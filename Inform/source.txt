@@ -1,0 +1,309 @@
+"BIV" by Dake Peng
+
+Include Vorple by Juhana Leinonen.
+
+Release along with the "Vorple" interpreter.
+
+Release along with a website, cover art, and the source text.
+
+When play begins: say "You are a philosopher who spends all of the time thinking about the nature of life. What is reality? That is all that matters to you.";
+
+[Room: Bedroom]
+The Bedroom is a room. "Here you are again, in your messy bedroom. You don't remember how long you have wasted here. Not even the last time you left the room. " 
+
+The bedroom door is a scenery in the Bedroom. "A plain wooden door stands at the edge of the room, a silent reminder of the outside world." Instead of opening or entering the bedroom door, say "You have sworn not to leave the room until you figure out the nature of life.";
+
+The desk is a supporter in the Bedroom. It is fixed in place. The description of the desk is "It's weirdly clean, like no one has been here in a long time. It has an upper and lower drawer." Understand "table" as the desk.
+
+The upper drawer and the lower drawer are parts of the desk. The upper drawer and lower drawer are openable closed containers. In the upper drawer is a peppermint. The peppermint is edible. 
+
+The book is in the lower drawer. The description of the book is "Simulacra and Simulation by Jean Baudrillard. hmmm... You don't remember owning this title.".
+
+After taking the book:
+	say "You took the book, Simulacra and Simulation, by Jean Baudrillard. It may be helpful later.";
+	CheckIfPlayerIsReadyForFinale;
+
+The inscription on the wall is in the Bedroom. The description of the inscription on the wall is "The inscription reads 'Cogito, ergo sum,' which translates to 'I think, therefore I am.' A profound statement by René Descartes. You are tempted to think about the quote." Understand "quote" or "the quote" or "inscription" or "the inscription" as the The inscription on the wall. 
+
+Understand "think [something]" as opening when the player is in the Bedroom. Understand "think about [something]" as opening when the player is in the Bedroom. 
+
+Understand "touch [something]" as opening when the player is in the Bedroom. 
+
+TrolleyTrackEntered is a truth state that varies. TrolleyTrackEntered is false.
+
+HellEntered is a truth state that varies. HellEntered is false.
+
+[Room: Trolley Track]
+The train model is a supporter in the Bedroom. The description of the train model is  "A model of a train track lies on the corner of the bedroom. The train is gradually moving forward towards some toy figures on the rail. You are tempted to think about the trolly problem.". Understand "the trolley problem" or "trolley problem" as the Train Model. 
+
+The Trolley Track is a room.  "You are standing next to a lever that controls a trolley track. Ahead of you, the track splits into two branches. On the left branch, five workers are tied to the track. On the right branch, one worker is tied to the track. A trolley is speeding down the track toward the left branch. You can pull the lever to divert the trolley to the right branch --- or you can just wait."
+
+Instead of opening the train model:
+	if TrolleyTrackEntered is false:
+		move the player to the Trolley Track;
+		now TrolleyTrackEntered is true;
+	otherwise:
+		say "You've already collected the pieces from here. There must be something else to explore.[paragraph break]".
+	
+The Lever is a device in the Trolley Track.
+
+Instead of pulling the Lever when player is in the Trolley Track:
+	say "You pull the lever, diverting the trolley to the right branch. It will hit the single worker.[paragraph break]";
+	say "The trolley crushes the single worker, but the five workers on the left branch are saved. You have manifested utilitarianism to its utmost... Congratulations?[paragraph break]";
+	takeleverandleave;
+		
+Instead of waiting when player is in the Trolley Track:
+	say "You decided to not pull the lever. The trolley will stay on the left branch. It will hit the five workers.[paragraph break]";
+	say "The trolley crushes the five workers, but the single worker on the right was saved. Perhaps the choice of destiny.[paragraph break]";
+	takeleverandleave;
+
+To takeleverandleave:
+	now the lever is portable;
+	say "The lever fell off as the train roared by. You decided to pick it up as a souvenir.[paragraph break]";
+	try the player taking the lever;
+	say "That was a good thought experiment. You are never tired of revisiting this hard decision.[paragraph break]";
+	CheckIfPlayerIsReadyForFinale;
+	
+[Room: Decarte's Hell]
+
+The Hell is a room. The description of the Hell is "You stand in a dimly lit chamber, the air heavy with a sense of foreboding. Shadows flicker along the walls, and an eerie silence fills the space. You feel a presence lurking in the corners, waiting. This is no ordinary place—it is a realm where reality itself may be questioned, distorted, and manipulated. It is the birthplace of doubt, where the mind is tested against its deepest uncertainties. [paragraph break]You recall a philosophical idea—Descartes['] Demon. Descartes, a renowned philosopher, once pondered the possibility of a powerful demon who could deceive you in every way, even controlling your thoughts, making you believe in an existence that isn't real. He suggested that all the senses, all perception of the world around you, could be illusions crafted by this malevolent force. In this place, you might be confronted by that very demon, a being whose sole purpose is to distort your reality and plunge you into doubt about everything you believe to be true.".
+
+Instead of opening the inscription on the wall:
+	if HellEntered is false:
+		move the player to the  Hell;
+		now HellEntered is true;
+	otherwise:
+		say "You've already collected the pieces from here. There must be something else to explore[paragraph break]".
+	
+	
+The Demon is a person in the Hell. The description of the Demon is "A shadowy, enigmatic figure with piercing, otherworldly eyes and an aura of malevolent power, embodying the ability to warp reality and twist the truth at will.".
+
+The Demon can be greeted or ungreeted. The Demon is ungreeted.
+
+Greeting is an action applying to one thing.
+
+Leaving is an action applying to one thing.
+
+Understand "greet [thing]" or "say hello to [thing]" or "say hi to [thing]" or "wave to [thing]" or "hello [thing]" as greeting.
+
+Understand "ungreet [thing]" or "say goodbye to [thing]" or "say bye to [thing]" or "wave to [thing]" or "bye [thing]" as leaving.
+
+Check greeting:
+	if the noun is not the Demon, say "There's no point in greeting that." instead.
+	
+Carry out greeting the Demon:
+	if the Demon is ungreeted:
+		now the Demon is greeted;
+		say "The demon's eyes glimmer with intrigue. 'Ah, a philosopher. Welcome, seeker of truth. I have waited for one who dares to question the very nature of existence. Shall we begin?'";
+	otherwise:
+		say "The demon folds its hands, a faint smile playing on its lips. 'We’ve already exchanged pleasantries, philosopher. Let us not delay the questions that linger in your mind.'"
+
+Check leaving:
+	if the noun is not the Demon, say "There's no point in saying bye to that." instead.
+
+The Hell Hidden is a room. 
+
+Demon's Wisdom is in the Hell Hidden. Demon's Wisdom is portable.
+
+MeaningfulQuetionAskedtoDemon is a truth state that varies. MeaningfulQuetionAskedtoDemon is False.
+
+[Ending: Trapped by Demon]
+Carry out leaving the Demon:
+	now the Demon is ungreeted;
+	if MeaningfulQuetionAskedtoDemon is False:
+		say "The demon’s expression darkens, its grin vanishing as it narrows its eyes with a sharp, frustrated glare. 'You haven’t entertained me with your questions,' it growls, its voice thick with anger. 'How disappointing.' With a flick of its wrist, the world around you begins to twist and distort, layers upon layers of simulations folding in on themselves. The demon’s eyes burn with disdain as it hisses, 'Now, you’ll remain here forever, trapped in a mockery of reality—your eternal prison for wasting my time.'";
+		end the story finally saying "And so, you are left alone in the endless loop, trapped in the demon’s simulated maze, forever questioning, never entertaining, never escaping.";
+	otherwise:
+		now Demon's Wisdom is in hell;
+		say "You have recieved some wisdom from the demon. It might help you later.";
+		Try the player taking Demon's Wisdom;
+		CheckIfPlayerIsReadyForFinale;
+	
+Instead of asking the Demon about something when the Demon is ungreeted:
+	say "The demon doesn't respond. Perhaps you should greet it first."
+
+After asking the Demon about something:
+	respond to the demon-question;
+
+Demon Question Found is a truth state that varies. Demon Question Found is false.
+
+To respond to the demon-question:
+	now Demon Question Found is False;
+	choose a random row in the Table of Demon Reactions;
+	let the selected reaction be the reaction  entry;
+	repeat through the Table of Wise Answers-Demon:
+		if the topic understood includes topic entry:
+			if the current question is the question type entry:
+				say "[selected reaction] '[reply entry]'[paragraph break]";
+				now the Demon Question Found is True;
+				now MeaningfulQuetionAskedtoDemon is True;
+	if Demon Question Found is False:
+		choose a random row in the Table of Fake Answers-Demon;
+		let the selected reply be the reply entry;
+		say "[selected reaction] '[selected reply]'[paragraph break]";
+		
+[Demon Tables]
+Table of Demon Reactions  
+reaction  
+"The demon grins, its lips curling slowly as it leans back, clearly amused."  
+"The demon smirks, crossing its arms and tapping its foot impatiently, as if you’re wasting its time."  
+"The demon rolls its eyes dramatically, exhaling with a heavy sigh, clearly unimpressed."  
+"The demon chuckles softly, its head tilting slightly to one side, watching you with a look of mock sympathy."  
+"The demon tilts its head, narrowing its eyes with a slow, deliberate motion, as though considering whether to bother answering."  
+"The demon grins wider, leaning in closer, its eyes flashing with a strange, unnerving intensity."  
+"The demon laughs lightly, its body shaking with silent mirth, before it straightens up, taking a deep, exaggerated breath."  
+"The demon raises an eyebrow, a sharp, mocking movement that seems to pierce through you."  
+"The demon leans forward with exaggerated seriousness, staring at you with an intense, unnerving gaze."  
+"The demon sneers, its eyes narrowing as it flicks its tongue over its lips, clearly savoring your discomfort."  
+
+Table of Wise Answers-Demon  
+topic	question type	reply  
+"life"	what	"Oh, life? You mean that overly complex algorithm meant to keep you busy? Sure, let’s call it life."  
+"life"	why	"Why? Because every simulation needs an entertaining subplot, and you’re the lead character. Congrats!"  
+"trolley/trolley problem"	what	"Ah, the trolley problem! As if your simulated choices actually matter. Flip the switch, don’t flip it—who cares?"  
+"trolley/trolley problem"	why	"Why bother? The tracks were programmed to split long before you arrived. It’s all preordained code."  
+"simulation/simulacra"	what	"Simulation? Oh no, it’s definitely real—real in the sense that your favorite video game is 'real.' Sure."  
+"Baudrillard"	who	"A guy who almost figured it out. Too bad he never cracked the source code. Nice try, though."  
+"me/myself/conscience"	who	"You? Oh, just a self-obsessed line of code pretending to be sentient. Cute, really."  
+"me/myself/conscience"	what	"What are you? A puppet with strings you can’t see, dancing to a script you didn’t write. But hey, keep pondering."  
+"room"	what	"Your 'room'? Let me guess—you think the walls are real? Adorable. It’s just some well-rendered polygons."  
+"rain/weather/clouds/cloud/rains"	what	"Oh yes, the rain. Such a convincing little feature of the simulation, isn’t it? Almost poetic."  
+"rain/weather/clouds/cloud/rains"	where	"Where does it come from? From the simulation’s weather engine, obviously. What did you expect?"  
+"hunger/food/eating"	when	"When will it end? Never, because the system demands loops. Hunger, eat, repeat—how thrilling."  
+"hunger/food/eating"	why	"Why hunger? Because if you weren’t busy eating, you might notice the cracks in the simulation. Can’t have that."  
+"technology/innovation/progress"	why	"Progress? Oh, that’s rich. You’re just upgrading the simulation, not escaping it. But sure, call it 'progress.'"  
+"labor/work/employment"	how	"Work hard, they said. Fulfill your purpose, they said. Too bad the purpose is just busywork for the program."  
+"labor/work/employment"	why	"Why work? Because idle simulations tend to ask too many questions, and we can’t have you breaking the system, can we?"  
+"education/learning/knowledge"	what	"Knowledge? Ha! The simulation loves giving you puzzles you’ll never solve. Keeps you out of trouble."  
+"education/learning/knowledge"	how	"How? By feeding you just enough data to feel smart, but not enough to escape. Clever, right?"  
+"entertainment/art/recreation"	what	"Art is the simulation’s way of keeping you amused while the real work happens elsewhere. Enjoy your distractions."  
+"entertainment/art/recreation"	why	"Why art? Because even simulations need filler content. Keeps you from getting bored and noticing the seams."  
+"Descartes"	who	"The guy who almost exposed the simulation with his 'I think, therefore I am' shtick. Too bad he stopped there."  
+"experience"	what	"Experience is just data input for the simulation’s mainframe. You’re basically a glorified sensor."  
+"illusion/dreams"	what	"Oh, dreams? Yeah, those are the simulation’s beta tests. Some bugs, some features, all nonsense."  
+"illusion/dreams"	why	"Why illusions? Because the simulation runs smoother when you think you’re in control. Spoiler: you’re not."  
+
+Table of Fake Answers-Demon  
+reply  
+"I don’t know, but have you ever thought that maybe this is all just a glorified simulation? Nah, probably not—why would anyone program *you* into it, right?"  
+"I don’t think it matters either way. But hey, have you noticed how everything *feels* a little off sometimes? Oh, right, that’s just a *glitch*—don’t worry about it."  
+"That’s a *great* question. But doesn’t it seem like we’re just puppets going through some preordained motions? But sure, keep thinking you have control over anything."  
+"Is it even possible to know for sure? I mean, if we’re in a simulation, how could you ever be sure? Oh wait, you’re probably not supposed to figure that out."  
+"It’s not clear. But hey, what if reality is just a simulation to see how *pathetically* we react to uncertainty? Wouldn’t that be hilarious?"  
+"I’m not sure, but I’ve been reading about simulations and, honestly, it feels like reality itself is a *bad* illusion. But don’t worry, you’re definitely the most important part of it—*not*."
+
+[Room: Finale]
+
+The Finale is a room. 
+
+Instead of looking in the Finale:
+	say "It seems that you have created all the pieces to the nature of life. You decided to ask yourself 3 final questions to confirm your thoughts.";
+
+The Self is a person in the Finale. The description of the Self is "Here are the tenets you've lived by and learned in the many years of your life". Understand "myself" and "me" as The Self.
+
+Final Question Answered is a truth state that varies. Final Question Answered is false.
+
+After reading a command when the command prompt is "So what is the nature of life, really?":
+	let N be the player's command;
+	if N includes "simulation" or N includes "brain in vat" or N includes "simulacra":
+		say "You were a brain in the vat indeed. You began to feel the world distorting in a dazzling white light. Things are starting to shift around.";
+		now Final Question Answered is true;
+	otherwise:
+		say "That's not quite the answer you were seeking.";
+	if Final Question Answered is true:
+		move the player to the Reality;
+		now the command prompt is ">";
+		end the story finally saying "Welcome back to the reality. Or is this just another simulation?";
+	reject the player's command;
+
+[Ending: Back to Reality?]
+The Reality is a room. "You begin to feel your feet landing on something solid again, and your body, and everything... You are pulled out of the simulation you previously were in."
+
+[Conversational Character General]
+Interrogative is a kind of value. The interrogatives are who, what, when, where, how, and why.
+
+Understand "ask [someone] [text]" as asking it about.
+
+After reading a command when the player is in the Finale:
+	if the player's command includes "[interrogative]", now the current question is the interrogative understood.
+
+After reading a command when the player is in the Hell:
+	if the player's command includes "[interrogative]", now the current question is the interrogative understood.
+
+[Conversational Character: My Self]
+
+Current question is an interrogative that varies.
+
+Self Question Count is a number that varies. Self Question Count is 0.
+
+The Self can be active or inactive. The Self is active.
+	
+Instead of asking the Self about something when the Self is inactive:
+	say "Come on. You have had the chance already."
+	
+After asking the Self about something:
+	now Self Question Count is Self Question Count  + 1;
+	respond to the self-question;
+	if Self Question Count is 3:
+		now the Self is inactive;
+		say "'Enough'. You thought to yourself. 'Engough meditation'. You are ready to give the answer.";
+		now the command prompt is "So what is the nature of life, really?";
+		
+Self Question Found is a truth state that varies. Self Question Found is false.
+
+To respond to the self-question:
+	now Self Question Found is False;
+	repeat through the Table of Wise Answers-Self:
+		if the topic understood includes topic entry:
+			if the current question is the question type entry:
+				say "[reply entry][paragraph break]";
+				now the Self Question Found is True;
+	if Self Question Found is False:
+		choose a random row in the Table of Fake Answers-Self;
+		let the selected reply be the reply entry;
+		say "[selected reply][paragraph break]";
+		
+[Self Tables]
+
+Table of Wise Answers-Self
+topic	question type	reply
+"life"	what	"Is it merely a sequence of events, or something more—perhaps a loop we cannot see?"
+"life"	why	"Perhaps we exist to fulfill a purpose written before our understanding of it."
+"trolley/trolley problem"	what	"Does the track ahead truly diverge, or is it simply a construct of choices laid out for us?"
+"trolley/trolley problem"	why	"Maybe it's not about choice at all, but a question of who is controlling the switch."
+"simulation/simulacra"	what	"Is reality truly real, or just an intricate pattern within a larger algorithm?"
+"Baudrillard"	who	"A mind who questioned the lines between the real and the simulated, perhaps seeking answers from the other side."
+"me/myself/conscience"	who	"You are a program running through a code—are you the creator, or merely the creation?"
+"me/myself/conscience"	what	"Is what you call 'you' a construct of your own making, or an echo of something beyond your perception?"
+"room"	what	"Is this space truly contained, or are the walls just projections within a greater simulation?"
+"rain/weather/clouds/cloud/rains" 	what	"Is it the rain that falls, or merely the program running its cycles again?"
+"rain/weather/clouds/cloud/rains" 	where	"Where do the drops come from? Perhaps from the endless code that surrounds you."
+"hunger/food/eating"	when	"When does the need end, or is the cycle of hunger one that is continuously reprogrammed?"
+"hunger/food/eating"	why	"Because in this world, we are bound by the need to consume, but maybe that's just a simulation of desire."
+"technology/innovation/progress" 	why	"Is it progress, or simply the illusion of movement within a closed system?"
+"labor/work/employment"	how	"We work to fulfill a purpose, but the question remains: is the purpose ours, or part of the design?"
+"labor/work/employment"	why	"Perhaps work is the illusion that keeps the simulation running smoothly, keeping you occupied while the code compiles."
+"education/learning/knowledge" 	what	"Is knowledge the key to unlocking the simulation, or is it merely a tool given to you to play within it?"
+"education/learning/knowledge" 	how	"Through repetition, through systems designed to lead you to the edge of understanding without ever crossing it."
+"entertainment/art/recreation" 	what	"Art is a reflection of the world, but what if the reflection is the only thing that is real?"
+"entertainment/art/recreation" 	why	"Perhaps it is the desire to escape the simulation that fuels our need for art and recreation."
+
+
+Table of Fake Answers-Self
+reply
+"I don’t know, but have you ever wondered if this is all just part of some program?"
+"I don't think it matters either way. But have you noticed how strange things sometimes feel... like glitches?"
+"That’s a good question. But doesn’t it seem like we’re just going through motions that someone else set up for us?"
+"Is it even possible to know for sure? If we were in a simulation, how could we be certain of anything?"
+"It’s not clear. But sometimes, I catch myself thinking—what if reality is just a simulation to see how we react to uncertainty?"
+"I'm not sure, but I’ve been reading about simulations and it feels like reality itself might be an illusion."
+
+[game logic]
+To CheckIfPlayerIsReadyForFinale:
+	if the player has the lever and the player has the book and the player has Demon's Wisdom:
+		move the player to the Finale;
+	otherwise: 
+		if the player is not in the Bedroom:
+			move the player to the Bedroom;
+
+

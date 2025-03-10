@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Philosophy & Ancient Greek Wisdom</title>
+  <script src="jquery-3.7.1.min.js"></script>
+  <script src="tracery.min.js"></script>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #f4f4f4;
+      color: #2f4f4f;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+    }
+    h1 {
+      font-size: 36px;
+      font-style: italic;
+      color: #4b0082;
+    }
+    .quote {
+      font-style: italic;
+      font-size: 28px;
+      color: #8b4513;
+      border: 2px solid #8b4513;
+      padding: 20px;
+      width: 80%;
+      max-width: 600px;
+      margin: 20px;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    #output {
+      width: 100%;
+    }
+    #image-container {
+      margin-top: 20px;
+      width: 80%;
+      max-width: 600px;
+    }
+    #image-container img {
+      width: 100%;
+      height: auto;
+      border: 5px solid #8b4513;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Philosophical Wisdom from Ancient Greece</h1>
+  <div id="output" class="quote"></div>
+  <div id="image-container"></div> <!-- Container for the image -->
+
+  <script>
+    $(document).ready(function() {
+      // Load the image URL from image.json
+      $.getJSON("image.json", function(imageData) {
+        // Debug: Check if the image data is loaded
+        console.log("Image loaded:", imageData);
+
+        // Display the image in the page
+        var imageUrl = imageData.image_url;
+        var imageHtml = '<img src="' + imageUrl + '" alt="Philosophical Image">';
+        $("#image-container").html(imageHtml); // Insert the image into the container
+      })
+      .fail(function(jqxhr, textStatus, error) {
+        console.error("Error loading image:", textStatus, error);
+        $("#image-container").text("Failed to load image.");
+      });
+
+      // Load the grammar from the JSON file
+      $.getJSON("grammar.json", function(grammar) {
+        // Debug: Check if the grammar is loaded
+        console.log("Grammar loaded:", grammar);
+
+        // Create a new tracery grammar instance
+        var grammarInstance = tracery.createGrammar(grammar);
+
+        // Generate the first sentence immediately
+        var initialOutput = grammarInstance.flatten("#origin#");
+        $("#output").html(initialOutput); // Display the first quote
+
+        // Generate and display a new sentence every 5 seconds (5000ms)
+        setInterval(function() {
+          var output = grammarInstance.flatten("#origin#");
+          
+          // Replace the previous sentence with the new one
+          $("#output").html(output);
+        }, 5000); // 5-second interval
+      })
+      .fail(function(jqxhr, textStatus, error) {
+        // Debug: Display error if the JSON fails to load
+        console.error("Error loading grammar:", textStatus, error);
+        $("#output").text("Failed to load grammar.");
+      });
+    });
+  </script>
+</body>
+</html>

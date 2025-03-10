@@ -1,0 +1,13 @@
+{ 
+"origin": "{svg <svg width=\"500\" height=\"500\" viewBox=\"0 0 500 500\" xmlns=\"http://www.w3.org/2000/svg\"> #background# #circle# #rectangle# #triangle# #lines# #dots# #ellipse# </svg> svg art}",
+"background" : ["<rect width=\"500\" height=\"500\" fill=\"#color#\"/>"],
+"circle": ["<circle cx=\"#randomX#\" cy=\"#randomY#\" r=\"50\" fill=\"#color#\" stroke=\"\\#000\" stroke-width=\"3\"/>"],
+"rectangle": ["<rect x=\"#randomX#\" y=\"#randomY#\" width=\"100\" height=\"100\" fill=\"#color#\" stroke=\"\\#000\" stroke-width=\"3\"/>"],
+"triangle": ["<polygon points=\"400,400 350,300 450,300\" fill=\"#color#\" stroke=\"\\#000\" stroke-width=\"3\"/>"],
+"lines": ["<line x1=\"50\" y1=\"400\" x2=\"200\" y2=\"300\" stroke=\"\\#000\" stroke-width=\"4\" stroke-dasharray=\"10,5\"/><line x1=\"300\" y1=\"200\" x2=\"400\" y2=\"100\" stroke=\"\\#000\" stroke-width=\"3\" stroke-dasharray=\"5,5\"/>"],
+"dots": ["<circle cx=\"200\" cy=\"200\" r=\"5\" fill=\"\\#000\"/> <circle cx=\"220\" cy=\"220\" r=\"5\" fill=\"\\#000\"/> <circle cx=\"240\" cy=\"240\" r=\"5\" fill=\"\\#000\"/> <circle cx=\"260\" cy=\"260\" r=\"5\" fill=\"#color#\"/>"],
+"ellipse": ["<ellipse cx=\"#randomX#\" cy=\"#randomY#\" rx=\"40\" ry=\"20\" fill=\"#color#\"/> <path d=\"M250 400 C300 450, 400 350, 450 400\" stroke=\"\\#000\" fill=\"#color#\" stroke-width=\"3\"/>"],
+"randomX": ["50", "100", "150", "200", "250", "300", "350", "400"],
+"randomY": ["50", "100", "150", "200", "250", "300", "350", "400"],
+"color" : ["White", "LightGray", "Silver", "Gainsboro", "Beige", "Ivory", "Honeydew", "MintCream", "Azure", "AliceBlue", "Lavender", "MistyRose", "PeachPuff", "LemonChiffon", "PaleGoldenRod", "LightCyan", "LightYellow", "LightBlue", "LightPink", "PowderBlue"]
+}

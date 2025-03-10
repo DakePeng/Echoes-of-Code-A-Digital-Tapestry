@@ -1,0 +1,270 @@
+body {
+    background-color: #FFFBEB;
+    color: #543E2E;
+    font-family: Georgia, Palatino, "Times New Roman", Times, serif;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+a {
+    color: #8B6E4E;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #6B4423;
+}
+
+.introduction {
+    background-color: #FFF8DC;
+    padding: 2em;
+    border-radius: 8px;
+    margin: 2em 0;
+    text-align: center;
+}
+
+.introduction h1,
+.introduction h2,
+.introduction .bibliography {
+    text-align: center;
+    margin: 0.5em 0;
+}
+
+.links {
+    background-color: #FAEBD7;
+    padding: 1.5em;
+    border-radius: 8px;
+    margin: 2em 0;
+}
+
+.links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.links li {
+    margin: 0.8em 0;
+    display: block;
+}
+
+.links .download,
+.links .auxiliary li {
+    background: #FFF8DC;
+    padding: 1em;
+    margin: 0.5em 0;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    text-align: center;
+}
+
+.links .download:hover,
+.links .auxiliary li:hover {
+    background: #FFE4B5;
+}
+
+.filetype {
+    display: block;
+    font-size: 0.8em;
+    color: #8B6E4E;
+    margin-top: 0.3em;
+}
+
+.about {
+    background-color: #FFF8DC;
+    padding: 2em;
+    border-radius: 8px;
+    margin: 2em 0;
+}
+
+.playinfo {
+    background-color: #FAEBD7;
+    padding: 2em;
+    border-radius: 8px;
+    margin: 2em 0;
+}
+
+/* Source page specific styles */
+.sourceintroduction {
+    background-color: #FFF8DC;
+    padding: 2em;
+    border-radius: 8px;
+    margin: 2em 0;
+    text-align: center;
+}
+
+.source {
+    background-color: #FAEBD7;
+    padding: 2em;
+    border-radius: 8px;
+    margin: 2em 0;
+}
+
+.notes {
+    background-color: #FFF8DC;
+    padding: 2em;
+    border-radius: 8px;
+    margin: 2em 0;
+}
+
+/* Source code styling */
+span.quote { color: #8B6E4E; }
+span.comment { color: #6B4423; }
+span.substitution { color: #8B6E4E; }
+span.i6code { color: #6B4423; font-family: monospace; }
+
+.coverimage, .sourcecoverimage {
+    width: 50%;
+    margin: 2em auto;
+    float: none;
+    text-align: center;
+}
+
+.coverimage img, .sourcecoverimage img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Play page specific styles */
+.play {
+    background-color: #FFFBEB;
+}
+
+.play .container {
+    background-color: #FFF8DC;
+}
+
+.play #gameport {
+    background-color: #FFFBEB;
+    border-left: 1px solid #8B6E4E;
+    padding: 1em;
+}
+
+.play .smalltitle {
+    color: #543E2E;
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.play #loader {
+    color: #543E2E;
+    background-color: #FFF8DC;
+}
+
+.play .interpretercredit {
+    background-color: #FAEBD7;
+    padding: 0.5em;
+    border-radius: 4px;
+}
+
+.play .interpretercredit a {
+    color: #8B6E4E;
+}
+
+.block-link {
+    background: #FFF8DC;
+    padding: 1em;
+    margin: 0.5em 0;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    text-align: center;
+    width: 100%;
+}
+
+.block-link:hover {
+    background: #FFE4B5;
+}
+
+.links-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.link-block {
+    background: #FFF8DC;
+    padding: 1em;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    text-align: center;
+    flex: 1;
+}
+
+.link-block:hover {
+    background: #FFE4B5;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 1em;
+    }
+
+    .coverimage, .sourcecoverimage {
+        width: 95%;  /* Slightly wider on mobile */
+        margin: 1em auto;
+    }
+
+    .coverimage {
+        text-align: center;
+        float: none;
+        margin: 1em auto;
+    }
+
+    .introduction, .links, .about, .playinfo {
+        margin: 1em 0;
+        padding: 1em;
+    }
+
+    .sourceintroduction, .source, .notes {
+        margin: 1em;
+        padding: 1em;
+    }
+
+    .sourcecoverimage {
+        float: none;
+        text-align: center;
+        margin: 1em auto;
+        width: auto;
+    }
+
+    .source td {
+        padding: 0.5em;
+    }
+
+    .play #gameport {
+        border: none;
+        padding: 0.5em;
+    }
+
+    .links-container {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 0.5em;
+    }
+
+    .source {
+        font-size: 14px;
+    }
+    
+    p.indent0, p.indent1, p.indent2, p.indent3, p.indent4, p.indent5, p.indent6, p.indent7, p.indent8, p.indent9 {
+        padding-left: 1em;
+        text-indent: 0;
+    }
+}
